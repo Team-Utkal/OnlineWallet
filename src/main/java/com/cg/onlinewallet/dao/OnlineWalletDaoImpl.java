@@ -1,7 +1,3 @@
-/*
-* @author:Satya Swagatam Panda, Karan Gupta
-* Description: This is a dao class which is used to access the data stored in our relational database.
-*/
 package com.cg.onlinewallet.dao;
 
 import java.util.List;
@@ -41,13 +37,14 @@ public class OnlineWalletDaoImpl implements OnlineWalletDao {
 	public void saveTransaction(WalletTransactions transaction) {
 		entityManager.persist(transaction);
 	}
- 
-/*
-* Method: checkUserByEmail
-* Description: To check that whether a user is present with given email or not
-* @param email:User's email
-* @returns Boolean: true if the user is present with entered email, otherwise false
-*/
+	/*
+	* Method: checkUserByEmail
+	* Description: To check that whether a user is present with given email or not
+	* @param email:User's email
+	* @returns Boolean: true if the user is present with entered email, otherwise false
+	* Created By - Satya Swagatam Panda
+	*/
+	
 	@Override
 	public boolean checkUserByEmail(String email) { // return false if the user is not present;
 		String Qstr = "SELECT user.email FROM WalletUser user WHERE user.email= :email";
@@ -59,13 +56,13 @@ public class OnlineWalletDaoImpl implements OnlineWalletDao {
 		}
 		return true;
 	}
-/*
-* Method: getUserByEmail
-* Description: To access the user with the given email
-* @param email:User's email
-* @returns user: It will return the user present with entered email
-*/
-
+	/*
+	* Method: getUserByEmail
+	* Description: To access the user with the given email
+	* @param email:User's email
+	* @returns user: This will return the user present with entered email
+	* Created By - Satya Swagatam Panda
+	*/
 	@Override
 	public WalletUser getUserByEmail(String email) {
 		String Qstr = "SELECT user FROM WalletUser user WHERE user.email= :email";
@@ -74,12 +71,12 @@ public class OnlineWalletDaoImpl implements OnlineWalletDao {
 		return query.getSingleResult();
 	}
 
-	
-/*
-* Method: getActiveUserList
-* Description: To access the list of users whose account is active in nature
-* @returns userList: It will return the users whose accounts are active
-*/
+	/*
+	* Method: getActiveUserList
+	* Description: To access the list of users whose account is active in nature
+	* @returns userList: This will return the users whose accounts are active
+	* Created By - Satya Swagatam Panda
+	*/
 	@Override
 	public List<String> getActiveUserList() {
 		String Qstr = "SELECT user.email FROM WalletUser user JOIN user.accountDetail account WHERE account.userStatus= :userStatus";
@@ -94,12 +91,12 @@ public class OnlineWalletDaoImpl implements OnlineWalletDao {
 		return userList;
 	}
 
-    
-/*
- * * Method: getNonActiveUserList
-   * Description: To access the list of users whose account is inactive in nature
-   * @returns userList: It will return the users whose accounts are inactive
-*/
+	   /*
+	   * Method: getNonActiveUserList
+	   * Description: To access the list of users whose account is inactive in nature
+	   * @returns userList: This will return the users whose accounts are inactive
+	   * Created By - Satya Swagatam Panda
+	   */
 	@Override
 	public List<String> getNonActiveUserList() {
 		String Qstr = "SELECT user.email FROM WalletUser user JOIN user.accountDetail account WHERE account.userStatus= :userStatus";
@@ -113,7 +110,6 @@ public class OnlineWalletDaoImpl implements OnlineWalletDao {
 		}
 		return userList;
 	}
-
 
 	@Override
 	public WalletUser getUser(Integer userId) {

@@ -70,9 +70,18 @@ public class WalletUser implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public WalletUser(String userName, String password, String phoneNumber, String email, type userType,
 			WalletAccount accountDetail) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.userType = userType;
+
+		this.accountDetail = accountDetail;
+	}
+	public WalletUser(String userName, String password, String phoneNumber, String email) {
 		super();
 		this.userName = userName;
 		this.password = password;

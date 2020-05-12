@@ -46,14 +46,13 @@ public class OnlineWalletController {
 	public ResponseEntity<String> regsiterUser(@RequestBody WalletUser user) {
 		String loginName=onlineWalletService.registerUser(user);
 		return new ResponseEntity<String>(loginName, HttpStatus.OK);
-
 	}
 	
 /*
 * Method:addMoney
 * Description:To map the request of user for adding money
 * @param userId:User's Id
-* @param amount:amount to be added
+* @param amount:Amount to be added
 * @returns Entity:After adding money to the account it will return the amount added into the account.
 * Created By-Satya Swagatam Panda
 */
@@ -80,7 +79,7 @@ public class OnlineWalletController {
 * Method:transactMoney
 * Description:To map the request of user for transferring the amount from one user to another user account
 * @param userId:User's Id
-* @param amount:amount to be transferred
+* @param amount:Amount to be transferred
 * @returns Entity:After transferring,it will give the message that transaction is completed
 * Created By-Karan Gupta
 */
@@ -97,6 +96,7 @@ public class OnlineWalletController {
 * @param email:User's email
 * @param password:User's password
 * @returns Entity:After login,it will return the userId for the developer use only.
+* Created by- Karan Gupta
 */
 	@GetMapping("/login")
 	public ResponseEntity<Integer> login(String email, String password) {
@@ -109,6 +109,7 @@ public class OnlineWalletController {
 * @param email:Admin's email
 * @param password:Admin's password
 * @returns Entity:After login,it will return the userId for the developer use only.
+* Created by- Karan Gupta
 */
 	@GetMapping("/admin")
 	public ResponseEntity<Integer> loginAdmin(String email, String password) {

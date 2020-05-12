@@ -1,6 +1,6 @@
 /*
 * @author:Satya Swagatam Panda, Karan Gupta
-* Description: It is a service class which is providing the functionality like login as a user or an admin,registering a new user and creating account for him,adding money to the account,
+* Description: This is a service class which is providing the functionality like login as a user or an admin,registering a new user and creating account for him,adding money to the account,
 * checking balance available in the account and transferring the amount from one user account to another user account.
 */
 
@@ -53,6 +53,7 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 			throw new ValidationException("The LoginName and password Combination does not match");
 		return user.getUserID();
 	}
+
 /*
 * Method: loginAdmin 
 * Description: To Validate the Admin data so that the Admin can login
@@ -76,10 +77,10 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 
 /*
 * Method: getUserList 
-* Description: To return the list of emails of the user according to user status provided.
+* Description: To return the list of email's of the user according to user status provided.
 * @param adminId:Admin's userId
 * @param userstatus: user status
-* @returns List<String>: List containing the emails of the user based on their userStatus either active or non_active.
+* @returns List<String>: List containing the email's of the user based on their userStatus either active or non_active.
 * @throws UnauthorizedAccessException:it is raised if the account associated with adminId is not an admin type
 * @throws WrongValueException:it is raised if the variable userStatus is other then values active and non_active 
 * Created By - Satya Swagatam Panda
