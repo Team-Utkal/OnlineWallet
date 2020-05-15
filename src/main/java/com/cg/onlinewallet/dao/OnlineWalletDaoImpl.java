@@ -37,7 +37,7 @@ public class OnlineWalletDaoImpl implements OnlineWalletDao {
 	public void saveTransaction(WalletTransactions transaction) {
 		entityManager.persist(transaction);
 	}
-	/*
+	/**
 	* Method: checkUserByEmail
 	* Description: To check that whether a user is present with given email or not
 	* @param email:User's email
@@ -56,7 +56,7 @@ public class OnlineWalletDaoImpl implements OnlineWalletDao {
 		}
 		return true;
 	}
-	/*
+	/**
 	* Method: getUserByEmail
 	* Description: To access the user with the given email
 	* @param email:User's email
@@ -71,7 +71,7 @@ public class OnlineWalletDaoImpl implements OnlineWalletDao {
 		return query.getSingleResult();
 	}
 
-	/*
+	/**
 	* Method: getActiveUserList
 	* Description: To access the list of users whose account is active in nature
 	* @returns userList: This will return the users whose accounts are active
@@ -91,7 +91,7 @@ public class OnlineWalletDaoImpl implements OnlineWalletDao {
 		return userList;
 	}
 
-	   /*
+	   /**
 	   * Method: getNonActiveUserList
 	   * Description: To access the list of users whose account is inactive in nature
 	   * @returns userList: This will return the users whose accounts are inactive

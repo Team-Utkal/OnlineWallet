@@ -1,4 +1,4 @@
-/*
+/**
 * @author:Satya Swagatam Panda, Karan Gupta
 * Description: This is a service class which is providing the functionality like login as a user or an admin,registering a new user and creating account for him,adding money to the account,
 * checking balance available in the account and transferring the amount from one user account to another user account.
@@ -29,7 +29,7 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 	@Autowired
 	private OnlineWalletDao onlineWalletDao;
 
-/*
+/**
 * Method: login 
 * Description: To Validate the user data so that the user can login
 * @param email: User's email
@@ -54,7 +54,7 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 		return user.getUserID();
 	}
 
-/*
+/**
 * Method: loginAdmin 
 * Description: To Validate the Admin data so that the Admin can login
 * @param email:Admin's Email
@@ -68,14 +68,14 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 		if(!onlineWalletDao.checkUserByEmail(email))
 			throw new UnauthorizedAccessException("No Admin exist for this email address. Kindly ask administration to get yourself registered");
 		WalletUser user = onlineWalletDao.getUserByEmail(email);
-		if (user.getUserType() == type.user)
+		if (user.getUserType() == type.admin)
 			throw new UnauthorizedAccessException("You are not authorized to login from here");
 		if (user.getPassword().equals(password) == false)
 			throw new ValidationException("The LoginName and password Combination does not match");
 		return user.getUserID();
 	}
 
-/*
+/**
 * Method: getUserList 
 * Description: To return the list of email's of the user according to user status provided.
 * @param adminId:Admin's userId
@@ -89,7 +89,7 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 	public List<String> getUserList(Integer adminId, String userStatus) {
 
 		WalletUser admin = onlineWalletDao.getUser(adminId);
-		if (admin.getUserType() == type.user)
+		if (admin.getUserType() == type.admin)
 			throw new UnauthorizedAccessException("You are not authorized to perform this task");
 		if (userStatus.equalsIgnoreCase(new String("non_active")))
 			return onlineWalletDao.getNonActiveUserList();
@@ -97,7 +97,7 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 			return onlineWalletDao.getActiveUserList();
 		throw new WrongValueException("not a criteria to fetch user details");
 	}
-/*
+/**
 * Method: changeUserStatus 
 * Description: Changes the status of account of user from active to non-active and other-way around
 * @param adminId:Admin's userId
@@ -113,7 +113,7 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 	public String changeUserStatus(Integer adminId, String email, String userStatus) {
 
 		WalletUser admin = onlineWalletDao.getUser(adminId);
-		if (admin.getUserType() == type.user)
+		if (admin.getUserType() == type.admin)
 			throw new UnauthorizedAccessException("You are Authorized to perform this task");
 		if (onlineWalletDao.checkUserByEmail(email) == false)
 			throw new InvalidException("There is no user with this LoginName. Please Enter a valid LoginName");
@@ -129,7 +129,7 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 		return user.getEmail();
 	}
 
-/*
+/**
 * Method: registerUser 
 * Description: Registers a new user into the wallet and also creates a account for user
 * @param user:object containing data about user
@@ -147,25 +147,32 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 		return user.getEmail();
 	}
 
-/*
+/**
 * Method: addMoney 
 * Description: Increments the balance of the user balance with the amount provided
 * @param userId:User's userId
 * @param amount:amount which has to be incremented 
 * Created By - Satya Swagatam Panda
 */
+	
 	@Override
 	public Double addMoney(Integer userId, Double Amount) {
-		WalletUser user = onlineWalletDao.getUser(userId);
-		Integer accountId = user.getAccountDetail().getAccountID();
-		WalletAccount account = onlineWalletDao.getAccount(accountId);
+		//WalletUser user = onlineWalletDao.getUser(userId);
+		//WalletAccount account = user.getAccountDetail();
+		//Integer accountId = user.getAccountDetail().getAccountID();
+		//WalletAccount account = onlineWalletDao.getAccount(accountId);
+		WalletAccount account = getWalletAccount(userId);
 		Double balance = account.getAccountBalance();
 		balance += Amount;
 		account.setAccountBalance(balance);
 		return account.getAccountBalance();
 	}
-
-/*
+	private WalletAccount getWalletAccount(Integer userId) {
+		WalletUser user = onlineWalletDao.getUser(userId);
+		WalletAccount account = user.getAccountDetail();
+		return account;
+	}
+/**
 * Method: showBalance 
 * Description: fetches and returns the balance of the user
 * @param userId: User's userid
@@ -174,12 +181,13 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 */
 	@Override
 	public Double showBalance(Integer userId) {
-		WalletUser user = onlineWalletDao.getUser(userId);
-		WalletAccount account = user.getAccountDetail();
+		//WalletUser user = onlineWalletDao.getUser(userId);
+		//WalletAccount account = user.getAccountDetail();
+		WalletAccount account = getWalletAccount(userId);
 		return account.getAccountBalance();
 	}
 
-/*
+/**
 * Method: transactMoney 
 * Description: Changes the status of account of user from active to non-active and other-way around
 * @param userId:user's userId
@@ -209,7 +217,7 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 		createTransaction(beneficiaryId, "Amount credited to your account. Balance has been updated", amount);
 	}
 	
-/*
+/**
 * Method: createTransaction 
 * Description: it will give the overall description of the transaction made by the user like date,time,amount transferred etc.
 * @param userId:user's userId

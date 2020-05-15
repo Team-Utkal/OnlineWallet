@@ -1,4 +1,4 @@
-/*
+/**
 * @author:Satya Swagatam Panda, Karan Gupta
 * Description: This is a controller class which handles the web requests made by the user and then maps it according to the required handler method.
 */
@@ -35,7 +35,7 @@ public class OnlineWalletController {
 	public String check() {
 		return "WORKING";
 	}
-/*
+/**
 * Method:registerUser
 * Description:To map the request of user for registering a new user
 * @param user:User's Details
@@ -48,7 +48,7 @@ public class OnlineWalletController {
 		return new ResponseEntity<String>(loginName, HttpStatus.OK);
 	}
 	
-/*
+/**
 * Method:addMoney
 * Description:To map the request of user for adding money
 * @param userId:User's Id
@@ -61,8 +61,7 @@ public class OnlineWalletController {
 		Double balance=onlineWalletService.addMoney(userId, amount);
 		return new ResponseEntity<Double>(balance, HttpStatus.OK);
 	}
-
-/*
+/**
 * Method:showBalance
 * Description:To map the request of user for showing the balance available in the account
 * @param userId:User's Id
@@ -75,7 +74,7 @@ public class OnlineWalletController {
 		return new ResponseEntity<Double>(balance, HttpStatus.OK);
 	}
 
-/*
+/**
 * Method:transactMoney
 * Description:To map the request of user for transferring the amount from one user to another user account
 * @param userId:User's Id
@@ -90,7 +89,7 @@ public class OnlineWalletController {
 		return new ResponseEntity<String>("Transaction Completed", HttpStatus.OK);
 	}
 
-/*
+/**
 * Method:login
 * Description:To map the request of user for login into the application
 * @param email:User's email
@@ -103,7 +102,7 @@ public class OnlineWalletController {
 		Integer userId = onlineWalletService.login(email, password);
 		return new ResponseEntity<Integer>(userId, HttpStatus.OK);
 	}
-/*
+/**
 * Method:loginAdmin
 * Description:To map the request of admin to login into the application
 * @param email:Admin's email
@@ -117,7 +116,7 @@ public class OnlineWalletController {
 		return new ResponseEntity<Integer>(userId, HttpStatus.OK);
 	}
 
-/*
+/**
 * Method:getUserList
 * Description:To map the request of admin for accessing the list of users who are either active or inactive users
 * @param userId:User's Id
@@ -130,7 +129,7 @@ public class OnlineWalletController {
 		List<String> userList = onlineWalletService.getUserList(userId, userStatus);
 		return new ResponseEntity<List<String>>(userList, HttpStatus.OK);
 	}
-/*
+/**
 * Method:changeUserStatus
 * Description:To map the request of admin to change the status of user's account to active or inactive
 * @param userId:Admin's Id

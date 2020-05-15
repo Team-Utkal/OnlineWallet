@@ -1,4 +1,4 @@
-/*
+/**
 * Created by:Satya Swagatam Panda
 * Description: This is an entity class used to define variables that are going to be used in the application.
 *              This also contains getter and setter methods for retrieving and updating the values of the variables.
