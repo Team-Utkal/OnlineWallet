@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import com.cg.onlinewallet.entities.*;
 import com.cg.onlinewallet.entities.WalletAccount.status;
@@ -18,6 +19,7 @@ import com.cg.onlinewallet.entities.WalletUser.type;
 
 @Transactional
 @SpringBootApplication
+@EnableDiscoveryClient
 public class OnlineWalletApplication implements CommandLineRunner {
 	@Autowired
 	EntityManager em;

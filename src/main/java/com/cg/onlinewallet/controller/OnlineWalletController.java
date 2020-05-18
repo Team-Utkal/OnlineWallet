@@ -31,7 +31,7 @@ public class OnlineWalletController {
 		// TODO Auto-generated constructor stub
 	}
     
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public String check() {
 		return "WORKING";
 	}
