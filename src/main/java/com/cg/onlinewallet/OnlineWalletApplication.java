@@ -20,19 +20,19 @@ import com.cg.onlinewallet.entities.WalletUser.type;
 @Transactional
 @SpringBootApplication
 @EnableDiscoveryClient
-public class OnlineWalletApplication implements CommandLineRunner {
+public class OnlineWalletApplication{ //implements CommandLineRunner {
 	@Autowired
 	EntityManager em;
 
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineWalletApplication.class, args);
 	}
-
+/*
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 	    
-		    /*
+		    
 			WalletTransactions wat1 = new WalletTransactions("amount debited", LocalDateTime.now(), 500.0, 500.0);
 			WalletTransactions wat2 = new WalletTransactions("amount credited", LocalDateTime.now(), 500.0, 1000.0);
 			WalletTransactions wat3 = new WalletTransactions("amount credited", LocalDateTime.now(), 500.0, 1500.0);
@@ -73,7 +73,7 @@ public class OnlineWalletApplication implements CommandLineRunner {
 			em.persist(wat2);
 			em.persist(wat3);
 			em.persist(wat4);
-			*/
+			
 	}
-    
+    */
 }

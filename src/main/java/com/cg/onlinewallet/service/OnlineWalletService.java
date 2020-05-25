@@ -8,7 +8,7 @@ public interface OnlineWalletService {
 	String registerUser(WalletUser user);
 
 	Double addMoney(Integer userId, Double Amount);
-
+	
 	Double showBalance(Integer userId);
 
 	void transactMoney(Integer userId, String beneficiaryLoginName, Double amount);

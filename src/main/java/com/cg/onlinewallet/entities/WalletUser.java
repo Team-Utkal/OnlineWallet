@@ -91,7 +91,7 @@ public class WalletUser implements Serializable {
 
 		this.accountDetail = accountDetail;
 	}
-
+	
 	public type getUserType() {
 		return userType;
 	}

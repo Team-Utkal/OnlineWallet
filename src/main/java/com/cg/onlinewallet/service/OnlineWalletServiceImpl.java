@@ -167,6 +167,7 @@ public class OnlineWalletServiceImpl implements OnlineWalletService {
 		account.setAccountBalance(balance);
 		return account.getAccountBalance();
 	}
+
 	private WalletAccount getWalletAccount(Integer userId) {
 		WalletUser user = onlineWalletDao.getUser(userId);
 		WalletAccount account = user.getAccountDetail();
